@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+
 public class Main {
     public static void main(String[] args) {
         List<Person> personList = new ArrayList<>();
@@ -25,24 +26,24 @@ public class Main {
 
         System.out.println("List всех аккаунтов, баланс которых составляет менее 100");
         List<BankAccount> littleBalance = bankAccounts.stream()
-                .filter(bankAccount -> bankAccount.getBalance() < 100)
+                .filter(bA -> bA.getBalance() < 100)
                 .toList();
         System.out.println(littleBalance);
 
         System.out.println("\nList всех владельцев счетов");
         List<Person> accountOwners = bankAccounts.stream()
-                .map(bankAccount -> bankAccount.getOwner())
+                .map(bA -> bA.getOwner())
                 .toList();
         System.out.println(accountOwners);
 
         System.out.println("\nList вида(ФИ; счет, email)  чей баланс более 100000");
         List<String> bigBalance = bankAccounts.stream()
                 .filter(bankAccount -> bankAccount.getBalance() > 100000)
-                .map(s -> String.format("%s %s;IBAN: %s;%s",
-                        s.getOwner().getfName(),
-                        s.getOwner().getlName().substring(0, 1).toUpperCase(),
-                        s.getIBAN(),
-                        s.getOwner().getEmail()))
+                .map(bA -> String.format("%s %s;IBAN: %s;%s",
+                        bA.getOwner().getfName(),
+                        bA.getOwner().getlName().substring(0, 1).toUpperCase(),
+                        bA.getIBAN(),
+                        bA.getOwner().getEmail()))
                 .toList();
         System.out.println(bigBalance);
 
